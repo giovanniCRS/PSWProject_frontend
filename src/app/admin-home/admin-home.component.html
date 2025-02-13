@@ -1,0 +1,33 @@
+<body>
+
+    <!--------------- Griglia scelta operazioni --------------->
+
+    <div id="options">
+        <div class="option" style="background-image: url(/assets/category.png);">
+            <div class="option-info">
+                <p class="option-text">Categorie</p>
+                <a routerLink="add-category">
+                    <div class="option-button">Aggiungi</div>
+                </a>
+            </div>
+        </div>
+
+        <!----- Tasto Sign Out ----->
+
+        <div class="option" style="background: transparent; display:flex; align-items: center; justify-content: center;">
+            <button (click)="signOut()" class="signOut-btn">
+                Sign out
+            </button>
+        </div>
+
+        <div class="option" style="background-image: url(/assets/product.PNG);">
+            <div class="option-info">
+                <p class="option-text">Prodotti</p>
+                <a routerLink="add-product">
+                    <div class="option-button">Aggiungi</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</body>

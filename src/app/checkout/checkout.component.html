@@ -1,0 +1,113 @@
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+<body>
+
+    <!----- Messaggio di errore ----->
+
+    <div class="errors-cart-container">
+        <div class="errors-cart" *ngIf="getErrorMessage()">
+            <div>{{getErrorMessage()}}</div>
+        </div>
+    </div>
+
+    <!--------------- Contenitore lista Acquisti / Checkout form --------------->
+
+    <div class="container">
+        <div class="checkout-layout">
+
+            <!--------------- Sezione Acquisti --------------->
+            <div class="return-cart">
+
+                <a routerLink="">Continua ad acquistare!</a>
+
+                <h1>Lista prodotti nel Carrello</h1>
+
+                <!----- Messaggio di errore ----->
+
+                <div class="errors" style="color: white;" *ngIf="acquistiList.length==0">
+                    <div>Il tuo carrello è vuoto</div>
+                </div>
+
+                <!----- Lista Acquisti ----->
+
+                <div class="list">
+                    <div class="item" *ngFor="let a of acquistiList">
+
+                        <img src="/assets/product.PNG">
+
+                        <div class="info">
+                            <div class="name">{{a.getProd().nome}}</div>
+                            <div class="price">Prezzo: €{{a.getProd().prezzo}}</div>
+                        </div>
+
+                        <div class="plus-minus-container">
+                            <button class="minus" (click)="updateQuantity(a.getId(),-1)">-</button>
+                            <div class="quantity">{{a.getQuantita()}}</div>
+                            <button class="plus" (click)="updateQuantity(a.getId(),1)">+</button>
+                        </div><br>
+
+                        <div class="return-price">Tot: €{{a.getProd().prezzo*a.getQuantita()}}</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!--------------- Checkout form --------------->
+
+            <div class="wrapper">
+
+                <h1>Checkout</h1>
+
+                <form [formGroup]="checkForm">
+                    <div class="input-box">
+                        <input type="text" formControlName="indirizzo" placeholder="Inserisci indirizzo">
+                        <i class='bx bx-map-pin'></i>
+                    </div>
+
+                    <div class="input-box">
+                        <input type="text" formControlName="numeroDiTelefono" placeholder="Inserisci numero di telefono">
+                        <i class='bx bx-phone'></i>
+                    </div>
+                    <div class="errors" *ngIf="checkForm.get('numeroDiTelefono')!.invalid">
+                        <div *ngIf="checkForm.get('numeroDiTelefono')!.invalid">
+                            <div *ngIf="checkForm.get('numeroDiTelefono')!.errors?.['required']">Inserisci numero di telefono</div>
+                            <div *ngIf="checkForm.get('numeroDiTelefono')!.errors?.['pattern']">inserire un numero corretto!</div>
+                        </div>
+                    </div>
+
+                    <!----- Selettore metodo di pagamento ----->
+
+                    <div class="input-box">
+
+                        <label>Scegliere metodo di pagamento</label>
+
+                        <i class='bx bx-credit-card' style="bottom: 40px;"></i>
+                        <select name="MetodoDiPagamento" id="selectPayment" formControlName="metodoDiPagamento">
+                            <option value="CARD">CARD</option>
+                            <option value="CASH">CASH</option>
+                        </select>
+                    </div>
+                </form>
+
+                <div class="return">
+                    <div class="row">
+                        <h1>Totale</h1>
+                        <h1>€{{getTotale()}}</h1>
+                    </div>
+                </div>
+
+                <!----- Tasti invio Checkout abilitato / disabilitato ----->
+
+                <div *ngIf="acquistiList.length==0">
+                    <button class="NoActive-btn">Checkout</button>
+                </div>
+                <div *ngIf="acquistiList.length>0">
+                    <button class="btn" (click)="checkout()">Checkout</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</body>

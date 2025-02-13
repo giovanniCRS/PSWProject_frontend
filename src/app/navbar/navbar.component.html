@@ -1,0 +1,28 @@
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+<nav class="nav">
+
+    <!--------------- Barra di ricerca --------------->
+
+    <div class="common-container-sb">
+        <form [formGroup]="searchBarForm">
+            <input class="common-searchBar" type="text" placeholder="Cerca una categoria" formControlName="keyword"/>
+            <button class="icon" type="submit" routerLink="search-prod" (click)="setKeyword()"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+
+    <div class="logo" routerLink=""></div>
+
+    <!--------------- Tasti di navigazione --------------->
+
+    <div class="common-group-buttons">
+        <button class="shortcut" routerLink=""><i class="fa fa-home fa-2x" aria-hidden="true"></i></button>
+        <button class="shortcut" routerLink="admin-auth"><i class="fa fa-lock fa-2x" aria-hidden="true"></i></button>
+        <button class="shortcut" routerLink="login"><i class="fa fa-user fa-2x" aria-hidden="true"></i></button>
+        <button class="shortcut" (click)="togglePopup()"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
+            <div class="counterQuantity">{{getTotProd()}}</div>
+        </button>
+    </div>
+</nav>
+
+

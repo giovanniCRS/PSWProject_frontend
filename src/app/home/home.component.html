@@ -1,0 +1,148 @@
+<app-banner></app-banner>
+
+<div class="divider-bar"></div>
+
+<!--------------- Vista sulle Categorie --------------->
+
+<div  class="external-container">
+    <div class="container">
+        <h1 class="heading">La categoria che fa per te</h1>
+        <div class="box1">
+            <div class="content">
+                <div class="card" *ngFor="let elem of categoryList">
+                    <div class="card-content">
+                        <div class="image">
+                            <img src="/assets/category.png" alt="">
+                        </div>
+
+                        <div class="name-p">
+                            <span class="name">{{elem.nome}}</span>
+                        </div>
+
+                        <button routerLink="search-prod" (click)="setKeyword(elem.nome)" class="btn">Maggiori dettagli</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="divider-bar"></div>
+
+<!--------------- Vista sui Prodotti --------------->
+
+<section class="menu" id="menu">
+    <h1 class="heading">Prodotti unici</h1>
+        
+    <div class="box-container">
+        <div class="box" *ngFor="let elem of previewProductList">
+            <span></span>
+            
+            <div class="content">
+                <img src="/assets/product.PNG" alt="">
+                <h3>{{elem.nome}}</h3>
+                <div class="price">{{elem.marca}}</div>
+                <div class="price">€{{elem.prezzo}}</div>
+                <div class="quantity">{{elem.quantitaInMagazzino}} Rimanenti</div>
+                <div class="errors" *ngIf="elem.quantitaInMagazzino==0">
+                    <div>Esaurito</div>
+                </div>
+                <a (click)="addProduct(elem)" class="btn">Aggiungi al carrello</a>
+            </div>
+        </div>
+    </div>
+    <div class="ctn-all">
+        <div class="btn-all">
+            <a routerLink="search-prod" (click)="setKeyword('all')">Vedi tutti</a>
+        </div>
+    </div>
+</section>
+
+<div class="divider-bar"></div>
+
+<!--------------- Sezione contatti --------------->
+
+<div class="contactUs">
+    <h2 class="heading">Contatti</h2>
+    <div class="contact-box">
+
+        <!--------------- Form --------------->
+        <div class="contact form">
+            <h3>Per qualisasi cosa, puoi scriverci un messaggio!</h3>
+            <form>
+                <div class="form-box">
+                    <div class="row50">
+                        <div class="input-box">
+                            <span>Nome</span>
+                            <input type="text" placeholder="Inserisci nome">
+                        </div>
+                        <div class="input-box">
+                            <span>Cognome</span>
+                            <input type="text" placeholder="Inserisci cognome">
+                        </div>
+                    </div>
+
+                    <div class="row50">
+                        <div class="input-box">
+                            <span>Email</span>
+                            <input type="text" placeholder="Inserisci email">
+                        </div>
+                        <div class="input-box">
+                            <span>Telefono</span>
+                            <input type="text" placeholder="Inserisci numero telefonico">
+                        </div>
+                    </div>
+
+                    <div class="row100">
+                        <div class="input-box">
+                            <span>Messaggio</span>
+                            <textarea placeholder="Inserisci qui il tuo messaggio..."></textarea>
+                        </div>
+                    </div>
+                        
+                    <div class="row100">
+                        <div class="input-box">
+                            <input type="submit" value="Invia">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!--------------- Info box --------------->
+        <div class="contact info">
+            <h3>I nostri contatti</h3>
+            <div class="info-box">
+                <div>
+                    <span><i class='bx bx-map'></i></span>
+                    <p>Via 1^ Traversa Pietro Bucci, 22 - Rende(CS)</p><br>
+                </div>
+
+                <div>
+                    <span><i class='bx bx-envelope'></i></span><br>
+                    <p>crsgnn01p09m208f&#64;studenti.unical.it</p>
+                </div>
+
+                <!-- Social Media Links -->
+
+                <div>
+                    <span><i class='bx bxl-instagram'></i></span>
+                    <a href="https://instagram.com/giovanni_crs?igshid=OGQ5ZDc2ODk2ZA==">Giovanni Caruso<br></a>
+                </div>
+
+                
+                <div>
+                    <span><i class='bx bxl-github'></i></span>
+                    <a href="https://github.com/giovanniCRS">giovanniCRS</a>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- Map -->
+        <div class="contact map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3085.1217906869697!2d16.219661!3d39.3534785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133f99ba4c6da015%3A0xba67514092b6bb78!2s1%5E%20Traversa%20P.%20Bucci%2C%2022%2C%2087036%20Quattromiglia%20CS!5e0!3m2!1sit!2sit!4v1726820682514!5m2!1sit!2sit" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,81 @@
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+<body>
+
+    <div class="blacker" id="bl">
+
+        <!--------------- Contenitore lista Categoria & form aggiunta --------------->
+
+        <div class="double-wrap">
+
+            <!--------------- form aggiunta Categoria --------------->
+
+            <div class="wrapper">
+                <form [formGroup]="categoryForm">
+                    <h1>Aggiungi Categoria</h1>
+
+                    <div class="input-box">
+                        <input type="text" formControlName="nome" placeholder="Inserisci nome Categoria">
+                    </div>
+                    <div class="errors" *ngIf="categoryForm.get('nome')!.invalid">
+                        <div *ngIf="categoryForm.get('nome')!.errors?.['required']">Inserisci un nome</div>
+                        <div *ngIf="categoryForm.get('nome')!.errors?.['pattern']">Puoi inserire solo lettere</div>
+                        <div *ngIf="categoryForm.get('nome')!.errors?.['minlength']">Inserisci almeno 4 lettere</div>
+                    </div>
+
+                    <button (click)="addCategory()" class="btn">Aggiungi</button>
+
+                </form>
+            </div>
+
+            <!--------------- Lista Categorie --------------->
+
+            <div class="list">
+                        <div class="option" style="background-image: url(/assets/category.png);" *ngFor="let elem of categoryList">
+                            <div class="option-info">
+                                <p class="option-text">{{elem.nome}}</p>
+                                <a (click)="togglePopup(elem.nome)">
+                                    <div class="option-button">Modifica</div>
+                                </a>
+                                <a (click)="removeCategory(elem.nome)">
+                                    <div class="option-button">Rimouvi</div>
+                                </a>
+                            </div>
+                    </div>
+            </div>
+            
+
+        </div>
+
+        <!--------------- Pop-up aggiornamento Categoria --------------->
+
+        <div class="popup" id="popup-1">
+            <div class="content">
+
+                <div class="close-btn" (click)="togglePopup('ciao')">
+                    <i class='bx bxs-x-circle'></i>
+                </div>
+
+                <form [formGroup]="updateCategoryForm">
+                    <h1>Modifica Categoria</h1>
+
+                    <div class="input-field">
+                        <input placeholder="Inserisci nuovo nome" formControlName="nome" type="text" class="validate">
+                    </div>
+                    <div class="errors" *ngIf="updateCategoryForm.get('nome')!.invalid">
+                        <div *ngIf="updateCategoryForm.get('nome')!.errors?.['required']">Inserisci un nome</div>
+                        <div *ngIf="updateCategoryForm.get('nome')!.errors?.['pattern']">Puoi inserire solo lettere</div>
+                        <div *ngIf="updateCategoryForm.get('nome')!.errors?.['minlength']">Inserisci almeno 4 lettere</div>
+                    </div>
+
+                    <button (click)="updateCategory()" class="second-button">
+                        Vai!
+                    </button>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</body>

@@ -1,0 +1,33 @@
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+<body>
+
+    <!--------------- Form di Login --------------->
+
+    <div class="wrapper">
+        <form [formGroup]="loginForm">
+            <h1>Login</h1>
+            <div class="errors" *ngIf="getErrorMessage()">
+                <div>{{getErrorMessage()}}</div>
+            </div>
+            <div class="input-box">
+                <input type="email" placeholder="Email" formControlName="email" required>
+                <i class='bx bxs-envelope'></i>
+            </div>
+            <div class="input-box">
+                <input type="password" placeholder="Password" formControlName="password" required>
+                <i class='bx bxs-lock-alt'></i>
+            </div>
+            
+            <button (click)="login()" type="submit" class="btn">Login</button>
+
+            <!----- Switch registrazione ----->
+
+            <div class="register-link">
+                <p>Non hai un account? <a routerLink="register">Registrati</a> </p>
+            </div>
+
+        </form>
+    </div>
+
+</body>

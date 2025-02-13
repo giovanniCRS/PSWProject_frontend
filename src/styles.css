@@ -1,0 +1,138 @@
+/*---------------General settings---------------*/
+body{
+    font-family: 'Montserrat';
+}
+
+/*---------------Divisore blocchi Html---------------*/
+
+.divider-bar{
+    height: 15px;
+    width: 100%;
+    background-color: #ab2222;
+    box-shadow: 0 0 5px #ab2222,
+                0 0 15px #ab2222,
+                0 0 30px #ab2222,
+                0 0 60px #ab2222;
+}
+
+/*---------------Common errors style---------------*/
+
+.errors{
+    background-color: #a82c2c;
+    border-radius: 10px;
+    text-align: center;
+    backdrop-filter: blur(20px);
+    opacity: 0.8;
+}
+
+/*---------------Popup azioni---------------*/
+
+.popup .content{
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -150%) scale(0);
+    width: 50%;
+    height: 580px;
+    z-index: 2;
+    text-align: center;
+    border-radius: 20px;
+    background: rgba(122, 21, 21, .7);
+    border: 1px solid white;
+    backdrop-filter: blur(30px);
+    box-shadow: 0 0 5px #7a1515,
+                0 0 25px #7a1515,
+                0 0 50px #7a1515,
+                0 0 200px #7a1515;
+}
+
+.popup.active .content{
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%, -50%)scale(1);
+}
+
+.popup h1{
+    font-size: 32px;
+    font-weight: 600;
+    padding: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.popup .close-btn{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 30px;
+    height: 30px;
+    color: black;
+    font-size: 30px;
+    border-radius: 50%;
+    background: #ab2222;
+    box-shadow: 0 0 5px #ffd9e2,
+                0 0 10px #ffd9e2,
+                0 0 15px #ffd9e2,
+                0 0 20px #ffd9e2;
+    cursor: pointer;
+}
+
+.popup .close-btn:hover{
+    color: #ab2222;
+    background: #ffd9e2;
+}
+
+.input-field .validate{
+    padding: 20px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: none;
+    color: #ffd9e2;
+    background: rgba(0, 0, 0, .3);
+    border: 1px solid white;
+    backdrop-filter: blur(30px);
+    outline: none;
+}
+
+.input-field .validate::placeholder{
+    color: #ffd9e2;
+}
+
+.popup .content .second-button{
+    color:#ffd9e2;
+    font-size: 20px;
+    letter-spacing: 2px;
+    font-weight: 500;
+    margin: 20px;
+    padding: 20px 30px;
+    border-radius: 40px;
+    background: black;
+    box-shadow: 0 0 5px #ffd9e2,
+                0 0 10px #ffd9e2,
+                0 0 15px #ffd9e2,
+                0 0 20px #ffd9e2;
+    transition: box-shadow 0.35s ease;
+    outline: none;
+}
+
+.popup .content .second-button:hover{
+    background: #ab2222;
+}
+
+.popup .content .errors-popUp-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 5px;
+    padding-bottom: 15px;
+}
+
+.popup .content .errors-popUp{
+    width: 75%;
+    background-color: #a82c2c;
+    border-radius: 10px;
+    text-align: center;
+    color: #ffd9e2;
+    backdrop-filter: blur(20px);
+    opacity: 1;
+}

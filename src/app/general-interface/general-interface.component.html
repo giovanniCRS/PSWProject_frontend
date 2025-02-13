@@ -1,0 +1,26 @@
+<app-navbar></app-navbar>
+
+<!--------------- Carrello --------------->
+
+<div class="cart" id="cart1">
+    <h2>Carrello</h2>
+    <div class="listCart">
+        <div class="item" *ngFor="let a of acquistiList">
+            <img src="/assets/product.PNG">
+            <div class="content">
+                <div class="name">{{a.getProd().nome}}</div>
+                <div class="price">€{{a.getProd().prezzo*a.getQuantita()}}</div>
+            </div>
+            <div class="quantity">
+                <button (click)="updateQuantity(a.getId(),-1)" class="minus">-</button>
+                <span class="value">{{a.getQuantita()}}</span>
+                <button (click)="updateQuantity(a.getId(),1)" class="plus">+</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="buttons">
+        <div class="close" (click)="togglePopup()">Close</div>
+        <div class="checkout"><a (click)="vai()">Checkout <br> Tot: €{{getTotale()}}</a></div>
+    </div>
+</div>

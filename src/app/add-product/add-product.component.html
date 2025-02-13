@@ -1,0 +1,180 @@
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+<body>
+
+    <div class="blacker" id="bl">
+
+        <!--------------- Contenitore lista Prodotti & form aggiunta --------------->
+
+        <div class="double-wrap">
+
+            <!--------------- form aggiunta Prodotto --------------->
+
+            <div class="wrapper">
+                <form [formGroup]="productForm">
+                    <h1>Aggiungi Prodotto</h1>
+
+                    <div class="input-box">
+                        <input type="text" formControlName="ean" placeholder="Inserisci codice a barre" ngModel maxlength="13">
+                    </div>
+                    <div class="errors" *ngIf="productForm.get('ean')!.invalid">
+                        <div *ngIf="productForm.get('ean')!.invalid">
+                            <div *ngIf="productForm.get('ean')!.errors?.['required']">Inserisci codice a barre</div>
+                            <div *ngIf="productForm.get('ean')!.errors?.['pattern']">Puoi inserire solo numeri</div>
+                            <div *ngIf="productForm.get('ean')!.errors?.['minlength']">Devi inserire 13 numeri</div>
+                        </div>
+                    </div>
+
+                    <div class="input-box">
+                        <input type="number" formControlName="quantitaInMagazzino" placeholder="Inserisci la quantita'">
+                    </div>
+                    <div class="errors" *ngIf="productForm.get('quantitaInMagazzino')!.invalid">
+                        <div *ngIf="productForm.get('quantitaInMagazzino')!.invalid">
+                            <div *ngIf="productForm.get('quantitaInMagazzino')!.errors?.['required']">Inserisci la quantita'</div>
+                            <div *ngIf="productForm.get('quantitaInMagazzino')!.errors?.['pattern']">Puoi inserire solo numeri positivi</div>
+                        </div>
+                    </div>
+
+                    <div class="input-box">
+                        <input type="number" formControlName="prezzo" placeholder="Inserisci il prezzo">
+                    </div>
+                    <div class="errors" *ngIf="productForm.get('prezzo')!.invalid">
+                        <div *ngIf="productForm.get('prezzo')!.invalid">
+                            <div *ngIf="productForm.get('prezzo')!.errors?.['required']">Inserisci il prezzo</div>
+                            <div *ngIf="productForm.get('prezzo')!.errors?.['pattern']">Puoi inserire solo numeri positivi</div>
+                        </div>
+                    </div>
+
+                    <div class="input-box">
+                        <input type="text" formControlName="nome" placeholder="Inserisci nome Prodotto">
+                    </div>
+                    <div class="errors" *ngIf="productForm.get('nome')!.invalid">
+                        <div *ngIf="productForm.get('nome')!.errors?.['required']">Inserisci un nome</div>
+                        <div *ngIf="productForm.get('nome')!.errors?.['pattern']">Puoi inserire solo lettere</div>
+                        <div *ngIf="productForm.get('nome')!.errors?.['minlength']">Inserisci almeno 4 lettere</div>
+                    </div>
+
+                    <div class="input-box">
+                        <input type="text" formControlName="marca" placeholder="Inserisci marca">
+                    </div>
+                    <div class="errors" *ngIf="productForm.get('marca')!.invalid">
+                        <div *ngIf="productForm.get('marca')!.errors?.['required']">Inserisci un nome</div>
+                    </div>
+
+                    <!----- Selettore Categoria ----->
+
+                    <div class="input-box">
+                        <label>Seleziona una Categoria</label>
+                        <select name="Categoria" id="selectCategory" formControlName="categoria">
+                            <option *ngFor="let elem of categoryList" value="{{elem.nome}}">{{elem.nome}}</option>
+                        </select>
+                    </div>
+
+                    <button (click)="addProduct()" class="btn">Aggiungi</button>
+
+                </form>
+
+            </div>
+
+            <!--------------- Lista Prodotti --------------->
+
+            <div class="list">
+                <div class="option" style="background-image: url(/assets/product.PNG);" *ngFor="let elem of productList">
+                    <div class="option-info">
+
+                        <p class="option-text">Nome: {{elem.nome}}</p>
+                        <p class="option-text">Marca: {{elem.marca}}</p>
+                        <p class="option-text">EAN: {{elem.ean}}</p>
+                        <p class="option-text">Prezzo: €{{elem.prezzo}}</p>
+                        <p class="option-text">Scorta: {{elem.quantitaInMagazzino}}</p>
+
+                        <a (click)="togglePopup(elem.ean)">
+                            <div class="option-button">Modifica</div>
+                        </a>
+
+                        <a (click)="removeProduct(elem.ean)">
+                            <div class="option-button">Rimouvi</div>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!--------------- form aggiornamento Prodotto --------------->
+
+        <div class="popup" id="popup-1">
+            <div class="content">
+
+                <div class="close-btn" (click)="togglePopup('ciao')">
+                    <i class='bx bxs-x-circle'></i>
+                </div>
+
+                <form [formGroup]="updateProductForm">
+                    <h1>Modifica Prodotto</h1>
+
+                    <div class="input-field">
+                        <input class="validate" type="text" formControlName="ean" placeholder="Inserisci codice a barre" ngModel maxlength="13">
+                    </div>
+                    <div class="errors" *ngIf="updateProductForm.get('ean')!.invalid">
+                        <div *ngIf="updateProductForm.get('ean')!.invalid">
+                            <div *ngIf="updateProductForm.get('ean')!.errors?.['required']">Inserisci codice a barre</div>
+                            <div *ngIf="updateProductForm.get('ean')!.errors?.['pattern']">Puoi inserire solo numeri</div>
+                            <div *ngIf="updateProductForm.get('ean')!.errors?.['minlength']">Devi inserire 13 numeri</div>
+                        </div>
+                    </div>
+
+                    <div class="input-field">
+                        <input class="validate" type="number" formControlName="quantitaInMagazzino" placeholder="Inserisci la quantita'">
+                    </div>
+                    <div class="errors" *ngIf="updateProductForm.get('quantitaInMagazzino')!.invalid">
+                        <div *ngIf="updateProductForm.get('quantitaInMagazzino')!.invalid">
+                            <div *ngIf="updateProductForm.get('quantitaInMagazzino')!.errors?.['required']">Inserisci la quantita'</div>
+                            <div *ngIf="updateProductForm.get('quantitaInMagazzino')!.errors?.['pattern']">Puoi inserire solo numeri positivi</div>
+                        </div>
+                    </div>
+
+                    <div class="input-field">
+                        <input class="validate" type="number" formControlName="prezzo" placeholder="Inserisci il prezzo">
+                    </div>
+                    <div class="errors" *ngIf="updateProductForm.get('prezzo')!.invalid">
+                        <div *ngIf="updateProductForm.get('prezzo')!.invalid">
+                            <div *ngIf="updateProductForm.get('prezzo')!.errors?.['required']">Inserisci il prezzo</div>
+                            <div *ngIf="updateProductForm.get('prezzo')!.errors?.['pattern']">Puoi inserire solo numeri positivi</div>
+                        </div>
+                    </div>
+
+                    <div class="input-field">
+                        <input class="validate" type="text" formControlName="nome" placeholder="Inserisci nome Prodotto">
+                    </div>
+                    <div class="errors" *ngIf="updateProductForm.get('nome')!.invalid">
+                        <div *ngIf="updateProductForm.get('nome')!.errors?.['required']">Inserisci un nome</div>
+                        <div *ngIf="updateProductForm.get('nome')!.errors?.['pattern']">Puoi inserire solo lettere</div>
+                        <div *ngIf="updateProductForm.get('nome')!.errors?.['minlength']">Inserisci almeno 4 lettere</div>
+                    </div>
+
+                    <div class="input-field">
+                        <input class="validate" type="text" formControlName="marca" placeholder="Inserisci marca">
+                    </div>
+                    <div class="errors" *ngIf="updateProductForm.get('marca')!.invalid">
+                        <div *ngIf="updateProductForm.get('marca')!.errors?.['required']">Inserisci un nome</div>
+                    </div>
+
+                    <div class="input-field">
+                        <label>Seleziona una Categoria</label>
+                        <select name="Categoria" id="selectCategory" formControlName="categoria">
+                            <option *ngFor="let elem of categoryList" value="{{elem.nome}}">{{elem.nome}}</option>
+                        </select>
+                    </div>
+
+                    <button (click)="updateProduct()" class="second-button">
+                        Vai!
+                    </button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>

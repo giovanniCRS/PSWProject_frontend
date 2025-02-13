@@ -1,0 +1,154 @@
+<body>
+
+    <!--------------- Card dati Utente --------------->
+
+    <div class="wrapper" *ngIf="user">
+            
+        <h1 class="heading">I tuoi dati</h1>
+        
+        <div class="container">
+            <div class="cell">
+                <h1>Nome : {{user.nome}}</h1>
+                <br><h1>Cognome : {{user.cognome}}</h1>
+                <br><h1>Email : {{user.email}}</h1>
+            </div>
+
+            <div class="cell">
+                <button (click)="togglePopup()" class="option-button">Modifica</button>
+                <button (click)="deletePopup()" class="option-button">Elimina</button>
+                <button (click)="signOut()" class="option-button">Log Out</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!--------------- Pop-up Modifica Dati Utente --------------->
+
+    <div class="popup" id="popup-update">
+        <div class="content">
+
+            <div class="close-btn" (click)="togglePopup()">
+                <i class='bx bxs-x-circle'></i>
+            </div>
+
+            <!--------------- Form --------------->
+
+            <form [formGroup]="updateForm">
+
+                <h1 class="heading" style="text-transform: none;">Modifica i tuoi dati</h1>
+
+                <!----- Messaggio di errore ----->
+
+                <div class="errors-popUp-container">
+                    <div class="errors-popUp" *ngIf="errorMessage">
+                        <div>{{errorMessage}}</div>
+                    </div>
+                </div>
+
+                <div class="input-field">
+                    <input placeholder="Inserisci nuovo nome" formControlName="nome" type="text" class="validate">
+                </div>
+                <div class="errors-popUp-container">
+                    <div class="errors-popUp" *ngIf="updateForm.get('nome')!.invalid">
+                        <div *ngIf="updateForm.get('nome')!.errors?.['required']">Inserisci un nome</div>
+                        <div *ngIf="updateForm.get('nome')!.errors?.['pattern']">Puoi inserire solo lettere</div>
+                        <div *ngIf="updateForm.get('nome')!.errors?.['minlength']">Inserisci almeno 2 lettere</div>
+                    </div>
+                </div>
+
+                <div class="input-field">
+                    <input placeholder="Inserisci nuovo cognome" formControlName="cognome" type="text" class="validate">
+                </div>
+                <div class="errors-popUp-container">
+                    <div class="errors-popUp" *ngIf="updateForm.get('cognome')!.invalid">
+                        <div *ngIf="updateForm.get('cognome')!.errors?.['required']">Inserisci un cognome</div>
+                        <div *ngIf="updateForm.get('cognome')!.errors?.['pattern']">Puoi inserire solo lettere</div>
+                        <div *ngIf="updateForm.get('cognome')!.errors?.['minlength']">Inserisci almeno 2 lettere</div>
+                    </div>
+                </div>
+
+                <div class="input-field">
+                    <input placeholder="Inserisci nuova password" formControlName="newpsw" type="password" class="validate">
+                </div>
+                <div class="errors-popUp-container">
+                    <div class="errors-popUp" *ngIf="updateForm.get('newpsw')!.invalid">
+                        <div *ngIf="updateForm.get('newpsw')!.errors?.['required']">Inserisci una password</div>
+                        <div *ngIf="updateForm.get('newpsw')!.errors?.['pattern']">Inserisci almeno:<br>
+                            -8 caratteri<br>
+                            -una lettera minuscola<br>
+                            -una lettera maiuscola<br>
+                            -un numero<br>
+                        </div>
+                    </div>
+                </div>
+
+                <button (click)="updateUser()" class="second-button">
+                    Vai!
+                </button>
+
+            </form>
+
+        </div>
+    </div>
+
+    <!--------------- Pop-up eliminazione Utente --------------->
+
+    <div class="popup" id="popup-delete">
+        <div class="content">
+
+            <h1 class="heading" style="text-transform: none;">Sei sicuro di voler procedere?</h1>
+
+            <button (click)="deleteUser()" class="second-button">
+                Conferma
+            </button>
+
+            <button (click)="deletePopup()" class="second-button">
+                Annulla
+            </button>
+
+        </div>
+    </div>
+
+</body>
+
+<div class="divider-bar"></div>
+
+<!--------------- Sezione storico acquisti Utente --------------->
+
+<div class="container story-container">
+    <section class="story">
+
+        <p class="heading">Storico acquisti</p>
+
+        <!----- Messaggio di errore ----->
+        <div class="error-container">
+            <div class="error-available" *ngIf="storicoOrdini.length==0">
+                <h1>Ancora nessun ordine effettuato</h1>
+            </div>
+        </div>
+
+        <!----- Matrici di Acquisti ----->
+
+        <div class="story-grid" *ngFor="let ordine of storicoOrdini">
+            <h1 class="heading" style="text-transform: none; padding-left: 20px;">Carrello:</h1>
+            <div class="story-list">
+
+                <div class="story-item" *ngFor="let acquisto of getAcquisti(ordine)">
+                    <div class="content">
+
+                        <img src="assets/product.PNG">
+                        <div class="story-details">
+                            <h3>{{getProd(acquisto).nome}}</h3>
+                            <p>Marca: {{getProd(acquisto).marca}}</p>
+                            <p>Totale: €{{getProd(acquisto).prezzo*acquisto.quantita}}</p>
+                            <p>Quantità: {{acquisto.quantita}}</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+</div>

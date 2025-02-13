@@ -1,0 +1,59 @@
+<body>
+<!--------------- Selettore Categoria --------------->
+
+    <div class="filters-container">
+        <div class="filters">
+            <div class="filter" *ngFor="let cat of categoryList">
+                <button (click)="setKeyword(cat.nome)" class="item">
+                    {{cat.nome}}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="table">
+        <!--------------- Messaggio di errore --------------->
+
+        <div class="error-container">
+            <div class="error-available" *ngIf="productList.length==0">
+                <h1>Nessun Prodotto disponibile per questa categoria!</h1>
+            </div>
+        </div>
+
+        <!--------------- Vista sui Prodotti --------------->
+
+        <section class="menu" id="menu">
+            <div class="box-container">
+                <div class="box" *ngFor="let elem of pageSlice">
+                    <span></span>
+                    <div class="content">
+                        <img src="/assets/product.PNG" alt="">
+                        <h3>{{elem.nome}}</h3>
+                        <div class="price">{{elem.marca}}</div>
+                        <div class="price">€{{elem.prezzo}}</div>
+                        <div class="quantity">{{elem.quantitaInMagazzino}} Rimanenti</div>
+                        <div class="errors" *ngIf="elem.quantitaInMagazzino==0">
+                            <div>Esaurito</div>
+                        </div>
+                        <a (click)="addProduct(elem)" class="btn">Aggiungi al carrello</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--------------- Slider --------------->
+
+        <div class="slider-container">
+            <mat-paginator  class="slider"
+                                    [length]="productList.length"
+                                    [pageSize]="12"
+                                    [showFirstLastButtons]="false"
+                                    [hidePageSize]="true"
+                                    [pageIndex]="currentPage"
+                                    (page)="OnPageChange($event)">
+            </mat-paginator>
+        </div>
+    </div>
+</body>
+
+

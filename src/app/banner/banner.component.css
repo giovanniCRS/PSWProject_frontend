@@ -1,0 +1,202 @@
+
+/*---------------General settings---------------*/
+
+.hero{
+    position: relative;
+    height: 750px;
+    display: flex; 
+    width: 100%;
+    align-items: center;
+    background: linear-gradient(0deg, rgba(0,0,0,.2), rgba(0,0,0,0.9));
+    background-size: cover;
+    overflow: hidden;
+}
+
+.hero::after{
+    content: ' ';
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: black;
+    opacity: 0.6;
+}
+
+.hero__content{
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    z-index: 1;
+    position: relative;
+}
+
+.hero__content p{
+    color: rgba(255,255,255,.8);
+}
+
+.intro-text{
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/*---------------Titolo dinamico sito web---------------*/
+/*ab2222    ...    rgba(255,0,60, .5)*/
+.big-text {
+    /*font-family: 'Zen Tokyo Zoo';*/
+    font-family: "Orbitron", sans-serif;
+    text-transform: uppercase;
+    font-size: 85px;
+    color: #ffd9e2;
+    text-shadow: 0 0 0 transparent,
+                0 0 10px #e1c008,
+                0 0 30px rgba(255, 0, 0, 0.549),
+                0 0 40px #e1c008,
+                0 0 100px #e1c008,
+                0 0 200px #e1c008,
+                0 0 300px #e1c008,
+                0 0 500px #e1c008;
+    animation: animate 3s infinite alternate;
+}
+
+@keyframes animate {
+    40%{
+        opacity: 1;
+    }
+    42%{
+        opacity: 0.8;
+    }
+    43%{
+        opacity: 1;
+    }
+    45%{
+        opacity: 0.3;
+    }
+    46%{
+        opacity: 1;
+    }
+}
+
+/*---------------Video Banner---------------*/
+
+#bg-video{
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: 0;
+}
+
+/*---------------Bottone dinamico registrazione---------------*/
+
+.button-wrapper{
+    display: flex;
+}
+
+.button{
+    position: relative;
+    display: inline-block;
+    padding: 25px 30px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-decoration: none;
+    color: #ab2222;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: .5s;
+    overflow: hidden;
+    background-color: rgba(171, 34, 34,.1);
+}
+
+.button:hover{
+    background-color: #ab2222;
+    color: black;
+    box-shadow: 0 0 5px #ab2222,
+                0 0 25px #ab2222,
+                0 0 50px #ab2222,
+                0 0 200px #ab2222;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, black);
+}
+
+.button span{
+    position: absolute;
+    display: block;
+}
+
+.button span:nth-child(1){
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #ab2222);
+    animation: animate1 1s infinite;
+}
+
+@keyframes animate1{
+    0%{
+        left: -100%
+    }
+    100%{
+        left: 100%;
+    }
+}
+
+.button span:nth-child(2){
+    top: -100%;
+    right: 0;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #ab2222);
+    animation: animate2 1s infinite;
+    animation-delay: .25s;
+}
+
+@keyframes animate2{
+    0%{
+        top: -100%
+    }
+    100%{
+        top: 100%;
+    }
+}
+
+.button span:nth-child(3){
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(270deg, transparent, #ab2222);
+    animation: animate3 1s infinite;
+    animation-delay: .5s;
+}
+
+@keyframes animate3{
+    0%{
+        right: -100%
+    }
+    100%{
+        right: 100%;
+    }
+}
+
+.button span:nth-child(4){
+    bottom: -100%;
+    left: 0;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #ab2222);
+    animation: animate4 1s infinite;
+    animation-delay: .75s;
+}
+
+@keyframes animate4{
+    0%{
+        bottom: -100%
+    }
+    100%{
+        bottom: 100%;
+    }
+}
