@@ -109,7 +109,20 @@ export class UserService {
     localStorage.removeItem('carrello');
     this.router.navigate(['']);
   }
-
+/*
+  signOut(): void {
+    this.httpClient.post('http://localhost:8080/api/auth/logout', {}, { responseType: 'text' })
+      .subscribe(() => {
+        localStorage.clear();  // Pulisce tutto, incluso il carrello
+        this.isUserLoggedIn.next(false);
+        this.router.navigate(['']).then(() => {
+          window.location.reload();  // Forza un refresh per eliminare tutti i dati in memoria
+        });
+      }, error => {
+        console.error("Errore nel logout:", error);
+      });
+  }
+*/
   //fa richiesta al be per ricevere un Utente a partire dalla mail
   getByEmail(email:String|null):Observable<Utente> {
     return this.apiService.makeRequest("GET", API.users + API.byEmail + "/" + email, null, this.getAuthHeaders());
