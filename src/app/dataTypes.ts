@@ -1,17 +1,17 @@
 export interface Categoria{
-    id:number,
+    idCategoria:number,
     nome:string
 }
 
 export interface Prodotto{
-    id:number,
+    idProdotto:number,
     ean:string,
     quantitaInMagazzino:number,
     prezzo:number,
     nome:string,
     marca:string,
-    categoria:String,
-    versione:number
+    categoria:Categoria,
+    versione?:number
 }
 
 export interface Role{
@@ -57,9 +57,11 @@ export class Acquisto{
     public idAcquisto:number;
     public prodottoVenduto:Prodotto;
     public quantita:number;
+    public prezzovendita?: number;
 
-    public constructor(idAcquisto:number, prodottoVenduto:Prodotto, quantita:number){
+    public constructor(idAcquisto:number, prodottoVenduto:Prodotto, quantita:number, prezzovendita?:number){
         this.idAcquisto=idAcquisto;
+        this.prezzovendita=prezzovendita || 0;
         this.prodottoVenduto=prodottoVenduto;
         this.quantita=quantita;
     }

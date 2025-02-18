@@ -104,4 +104,18 @@ export class UserHomeComponent implements OnInit{
   getProd(a:Acquisto):Prodotto{
     return a.prodottoVenduto
   }
+
+  aggiornaStoricoOrdini(): void {
+    this.userService.getOrdini(localStorage.getItem('email')).subscribe((res) => {
+      this.storicoOrdini = res; // Aggiorna la lista degli ordini
+    });
+  }
+
+  prova(){
+    this.userService.getOrdini(localStorage.getItem('email')).subscribe((res) => {
+      this.storicoOrdini = res; // Aggiorna la lista degli ordini
+    });
+  }
+
 }
+

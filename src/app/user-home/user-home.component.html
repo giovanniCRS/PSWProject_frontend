@@ -2,12 +2,12 @@
 
     <!--------------- Card dati Utente --------------->
 
-    <div class="wrapper" *ngIf="user">
+    <div class="wrapper">
             
         <h1 class="heading">I tuoi dati</h1>
         
         <div class="container">
-            <div class="cell">
+            <div class="cell" *ngIf="user">
                 <h1>Nome : {{user.nome}}</h1>
                 <br><h1>Cognome : {{user.cognome}}</h1>
                 <br><h1>Email : {{user.email}}</h1>
@@ -130,7 +130,7 @@
         <!----- Matrici di Acquisti ----->
 
         <div class="story-grid" *ngFor="let ordine of storicoOrdini">
-            <h1 class="heading" style="text-transform: none; padding-left: 20px;">Carrello:</h1>
+            <h1 class="heading" style="text-transform: none; padding-left: 20px;">Ordine:</h1>
             <div class="story-list">
 
                 <div class="story-item" *ngFor="let acquisto of getAcquisti(ordine)">

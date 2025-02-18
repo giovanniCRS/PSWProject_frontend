@@ -110,20 +110,25 @@ export class CarrelloService {
   }
 
   //invia una richiesta al be per creare un nuovo Carrello (con i relativi acquisti)
-  checkout(cart:CarrelloDto):void{
+  checkout(cart: CarrelloDto, aggiornaOrdini: () => void): void {
+    this.headers = { 'Authorization': 'Bearer ' + localStorage.getItem('user-token') };
+  
+    this.apiService.makeRequest("POST", API.carts, cart, this.headers).subscribe(
+      (res) => {
+        // Svuota il carrello
+        this.svuotaCarrello();
+  
+        // Aggiorna lo storico ordini senza ricaricare la pagina
+        aggiornaOrdini();
+      },
+      (error) => {
+        this.errorMessage = error.error;
+      }
+    );
+  }
 
-    this.headers = {'Authorization':'Bearer '+localStorage.getItem('user-token')};
-
-    //richiesta
-    this.apiService.makeRequest("POST", API.carts, cart, this.headers).subscribe((res)=>{
-
-      //caso positivo -> svuotiamo la lista in locale (andrà nello storico acquisti)
-      this.acquistiList = []
-      localStorage.setItem('carrello', JSON.stringify(this.acquistiList))
-      window.location.reload()
-    },
-    error=>{
-      this.errorMessage=error.error
-    })
+  svuotaCarrello(): void {
+    this.acquistiList = []; // Svuota la lista locale
+    localStorage.removeItem('carrello'); // Se lo salvi in localStorage, rimuovilo
   }
 }

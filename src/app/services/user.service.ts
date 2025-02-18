@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { AuthResponseDto, CarrelloDto, Utente } from '../dataTypes';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
 import { API } from '../constants';
 import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -22,11 +22,16 @@ export class UserService {
 
   // Metodo per ottenere gli headers di autenticazione dinamicamente
   private getAuthHeaders(): HttpHeaders {
-    const token = localStorage.getItem('user-token');
+    const token = localStorage.getItem('user-token'); // Sostituisci con la tua logica
+    if (!token || token==null) {
+      throw new Error('Token non disponibile');
+    }
     return new HttpHeaders({
-      'Authorization': token ? 'Bearer ' + token : ''
+      Authorization : 'Bearer ${token}'
     });
   }
+
+  headers = {'Authorization':'Bearer '+localStorage.getItem('user-token')};
 
   //invia una richiesta di Registrazione al be
   signUp(data:object):void {
@@ -129,8 +134,20 @@ export class UserService {
   }
 
   //fa richiesta al be per ricevere lista Ordini di un Utente a partire dalla mail
-  getOrdini(email:String|null):Observable<CarrelloDto[]> {
-    return this.apiService.makeRequest("GET", API.carts + API.byUser + "/" + email, null, this.getAuthHeaders());
+  getOrdini(email: string | null): Observable<CarrelloDto[]> {
+    if (!email) {
+      return throwError(() => new Error('Email non valida'));
+    }
+    
+    const headers = this.headers
+    
+    return this.apiService
+      .makeRequest("GET", API.carts + API.byUser + "/" + email, null, headers)
+      .pipe(
+        catchError(error => {
+          return throwError(() => error);
+        })
+      );
   }
 
   //fa richiesta al be per aggiornare un Utente a partire dalla mail

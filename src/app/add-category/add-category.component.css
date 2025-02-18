@@ -155,6 +155,7 @@ body{
     width: 300px;
     background-color: red;
     border-radius: 10px;
+    border: 1px solid white;
     margin: 0 auto;
 
     background-size: cover;
@@ -171,7 +172,7 @@ body{
     align-items: center;
     justify-content: flex-end;
     flex-direction: column;
-    opacity: 0;
+    opacity: 1;
     transition: opacity 0.2s ease-in-out;
 }
 
