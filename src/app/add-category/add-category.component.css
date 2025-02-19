@@ -12,7 +12,7 @@ body{
     justify-content: center;
     align-items: center;
     min-height: 1323px;
-    background: url('/assets/searchProd-bg.jpg') no-repeat;
+    background: url('/assets/addCatProd.jpg') no-repeat;
     background-size: cover;
     background-position: center;
 }

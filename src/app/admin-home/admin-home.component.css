@@ -9,6 +9,7 @@ body{
     background: url('/assets/comfortZone.jpg') no-repeat;
     background-size: cover;
     background-position: center;
+    margin-top: 20px;
 }
 
 /*-----Tasto Sign Out-----*/
@@ -70,7 +71,7 @@ body{
     align-items: center;
     justify-content: flex-end;
     flex-direction: column;
-    opacity: 0;
+    opacity: 1;
     transition: opacity 0.2s ease-in-out;
 }
 

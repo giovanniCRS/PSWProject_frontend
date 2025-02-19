@@ -12,7 +12,7 @@ body{
     justify-content: center;
     align-items: center;
     min-height: 1323px;
-    background: url('/assets/searchProd-bg.jpg') no-repeat;
+    background: url('/assets/addCatProd.jpg') no-repeat;
     background-size: cover;
     background-position: center;
 }
@@ -126,7 +126,7 @@ body{
 }
 
 .list .option{
-    min-width: 300px;
+    min-width: 400px;
     line-height: 70px;
     margin-right: 10px;
 }
@@ -190,11 +190,15 @@ body{
     font-size: 25px;
     margin: 0;
     width: 100%;
+    height: 100%;
     text-align: center;
     transition: all 0.2s ease-in-out;
     transform: translateY(-20px);
 }
 
+.bold {
+    font-weight: bold;
+}
 
 .option-button{
     width: fit-content;
@@ -217,10 +221,6 @@ body{
 
 .option-info a{
     text-decoration: none;
-}
-
-.option-info p{
-    background-color: rgba(0, 0, 0, .3);
 }
 
 .main-carousel{
