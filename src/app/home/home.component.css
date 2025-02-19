@@ -385,7 +385,7 @@
 
 .contact{
     padding: 40px;
-    background: white;
+    background: rgba(8, 0, 115, 0.222);
     box-shadow: 0 5px 35px rgba(0, 0, 0, .15);
 }
 

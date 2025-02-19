@@ -1,7 +1,5 @@
 <body>
-
     <!--------------- Griglia scelta operazioni --------------->
-
     <div id="options">
         <div class="option" style="background-image: url(/assets/category.png);">
             <div class="option-info">
@@ -13,11 +11,8 @@
         </div>
 
         <!----- Tasto Sign Out ----->
-
-        <div class="option" style="background: transparent; display:flex; align-items: center; justify-content: center;">
-            <button (click)="signOut()" class="signOut-btn">
-                Sign out
-            </button>
+        <div class="option signout-container">
+            <button (click)="signOut()" class="signOut-btn">Sign out</button>
         </div>
 
         <div class="option" style="background-image: url(/assets/product.PNG);">
@@ -29,5 +24,4 @@
             </div>
         </div>
     </div>
-
 </body>

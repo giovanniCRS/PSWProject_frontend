@@ -36,46 +36,77 @@
     color: rgba(255,255,255,.8);
 }
 
-.intro-text{
+.intro-text {
     text-transform: uppercase;
     font-size: 20px;
     font-weight: bold;
+    color: #fff;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    animation: fade-in 2s ease-in-out;
 }
 
 /*---------------Titolo dinamico sito web---------------*/
-/*ab2222    ...    rgba(255,0,60, .5)*/
 .big-text {
-    /*font-family: 'Zen Tokyo Zoo';*/
     font-family: "Orbitron", sans-serif;
     text-transform: uppercase;
     font-size: 85px;
     color: #ffd9e2;
-    text-shadow: 0 0 0 transparent,
-                0 0 10px #e1c008,
-                0 0 30px rgba(255, 0, 0, 0.549),
-                0 0 40px #e1c008,
-                0 0 100px #e1c008,
-                0 0 200px #e1c008,
-                0 0 300px #e1c008,
-                0 0 500px #e1c008;
-    animation: animate 3s infinite alternate;
+    position: relative;
+    animation: melt 6s infinite ease-in-out;
+    text-shadow: 
+        0 0 5px rgba(255, 217, 226, 0.3),
+        0 0 10px rgba(255, 217, 226, 0.2),
+        0 0 20px rgba(255, 217, 226, 0.1);
 }
 
-@keyframes animate {
-    40%{
-        opacity: 1;
+@keyframes melt {
+    0%, 100% {
+        transform: scale(1) skew(0deg, 0deg);
+        filter: blur(0);
     }
-    42%{
-        opacity: 0.8;
+    25% {
+        transform: scale(1.02) skew(2deg, -1deg);
+        filter: blur(1px);
     }
-    43%{
-        opacity: 1;
+    50% {
+        transform: scale(0.98) skew(-3deg, 2deg);
+        filter: blur(0.5px);
     }
-    45%{
-        opacity: 0.3;
+    75% {
+        transform: scale(1.01) skew(1deg, -2deg);
+        filter: blur(0.8px);
     }
-    46%{
-        opacity: 1;
+}
+
+.big-text::before,
+.big-text::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background: radial-gradient(circle, rgba(255, 217, 226, 0.1), transparent 70%);
+    opacity: 0;
+    animation: melt-flicker 6s infinite;
+}
+
+.big-text::after {
+    background: linear-gradient(45deg, rgba(225, 192, 8, 0.05), transparent 50%);
+    animation-delay: 2s;
+}
+
+@keyframes melt-flicker {
+    0%, 100% {
+        opacity: 0;
+    }
+    20%, 60% {
+        opacity: 0.2;
+    }
+    40%, 80% {
+        opacity: 0.1;
     }
 }
 
@@ -92,111 +123,61 @@
 
 /*---------------Bottone dinamico registrazione---------------*/
 
-.button-wrapper{
+.button-wrapper {
     display: flex;
+    gap: 20px;
 }
 
-.button{
+.button {
     position: relative;
     display: inline-block;
-    padding: 25px 30px;
+    padding: 25px 40px;
     text-transform: uppercase;
-    letter-spacing: 4px;
+    letter-spacing: 2px;
     text-decoration: none;
-    color: #ab2222;
+    color: #fff;
     font-size: 1.2rem;
-    font-weight: bold;
-    transition: .5s;
+    font-weight: 500;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    border: 2px solid darkred;
+    background-color: transparent;
     overflow: hidden;
-    background-color: rgba(171, 34, 34,.1);
+    border-radius: 8px;
 }
 
-.button:hover{
-    background-color: #ab2222;
-    color: black;
-    box-shadow: 0 0 5px #ab2222,
-                0 0 25px #ab2222,
-                0 0 50px #ab2222,
-                0 0 200px #ab2222;
-    -webkit-box-reflect: below 1px linear-gradient(transparent, black);
-}
-
-.button span{
+.button::before {
+    content: '';
     position: absolute;
-    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    background: rgba(255, 71, 87, 0.1);
+    border-radius: 50%;
+    transition: width 0.6s cubic-bezier(0.23, 1, 0.32, 1), 
+                height 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.button span:nth-child(1){
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, #ab2222);
-    animation: animate1 1s infinite;
+.button:hover {
+    color: #fff;
+    background-color: darkred;
+    box-shadow: 0 0 20px rgba(255, 71, 87, 0.4),
+                0 0 40px rgba(255, 71, 87, 0.2);
+    letter-spacing: 3px;
 }
 
-@keyframes animate1{
-    0%{
-        left: -100%
-    }
-    100%{
-        left: 100%;
-    }
+.button:hover::before {
+    width: 300px;
+    height: 300px;
 }
 
-.button span:nth-child(2){
-    top: -100%;
-    right: 0;
-    width: 1px;
-    height: 100%;
-    background: linear-gradient(180deg, transparent, #ab2222);
-    animation: animate2 1s infinite;
-    animation-delay: .25s;
+.button:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 10px rgba(255, 71, 87, 0.6);
 }
 
-@keyframes animate2{
-    0%{
-        top: -100%
-    }
-    100%{
-        top: 100%;
-    }
-}
-
-.button span:nth-child(3){
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(270deg, transparent, #ab2222);
-    animation: animate3 1s infinite;
-    animation-delay: .5s;
-}
-
-@keyframes animate3{
-    0%{
-        right: -100%
-    }
-    100%{
-        right: 100%;
-    }
-}
-
-.button span:nth-child(4){
-    bottom: -100%;
-    left: 0;
-    width: 1px;
-    height: 100%;
-    background: linear-gradient(360deg, transparent, #ab2222);
-    animation: animate4 1s infinite;
-    animation-delay: .75s;
-}
-
-@keyframes animate4{
-    0%{
-        bottom: -100%
-    }
-    100%{
-        bottom: 100%;
-    }
+.button span {
+    position: relative;
+    z-index: 1;
 }

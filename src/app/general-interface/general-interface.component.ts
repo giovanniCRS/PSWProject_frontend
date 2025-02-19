@@ -35,8 +35,10 @@ export class GeneralInterfaceComponent implements OnInit{
 
   //serve a cambiare pagina in base al fatto che Utente sia loggato o meno
   vai():void{
-    if(this.userService.isUserLoggedIn.getValue())
+    if(this.userService.isUserLoggedIn.getValue()){
       this.router.navigate(["checkout"])
+      this.togglePopup()
+    }
     else 
       this.router.navigate(["login"])
   }

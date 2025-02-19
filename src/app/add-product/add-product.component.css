@@ -125,10 +125,12 @@ body{
     margin-right: 2px;
 }
 
-.list .option{
-    min-width: 400px;
-    line-height: 70px;
+.list .option {
+    min-width: 270px;
+    height: 600px;
     margin-right: 10px;
+    padding: 20px;
+    border-radius: 10px;
 }
 
 .list::-webkit-scrollbar{
@@ -151,23 +153,22 @@ body{
     grid-gap: 20px;
 }
 
-.option{
-    width: 300px;
+.option {
+    width: 270px;
+    height: 330px;
     background-color: red;
     border-radius: 10px;
     border: 1px solid white;
     margin: 0 auto;
-
     background-size: cover;
     background-position: center;
-
     overflow: hidden;
+    position: relative;
 }
 
 .option-info{
     width: 100%;
     height: 100%;
-    background: linear-gradient(0deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 80%);
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -187,7 +188,7 @@ body{
 
 .option-text{
     color: white;
-    font-size: 25px;
+    font-size: 20px;
     margin: 0;
     width: 100%;
     height: 100%;
