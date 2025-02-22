@@ -1,4 +1,12 @@
 /*---------------General settings---------------*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
 body{
     font-family: 'Montserrat';
 }
@@ -135,4 +143,50 @@ body{
     color: #ffd9e2;
     backdrop-filter: blur(20px);
     opacity: 1;
+}
+
+/* Barra di scorrimento */
+/* Personalizzazione della barra di scorrimento */
+body::-webkit-scrollbar {
+    width: 15px; /* Larghezza della barra di scorrimento */
+}
+
+body::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.884); /* Colore dello sfondo della track */
+    border-radius: 0px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #ab2222e5; /* Colore della barra di scorrimento */
+    border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: #ff0000; /* Colore della barra di scorrimento al passaggio del mouse */
+}
+
+/* Frecce di scorrimento (su e giù) */
+body::-webkit-scrollbar-button {
+    background-color: #8b1717d8; /* Colore delle frecce */
+}
+
+body::-webkit-scrollbar-button:hover {
+    background-color: #ff0000; /* Colore delle frecce */
+}
+
+body::-webkit-scrollbar-button:start:decrement,
+body::-webkit-scrollbar-button:end:increment {
+    display: block; /* Mostra le frecce */
+}
+
+body::-webkit-scrollbar-button:end {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M7 10l5 5 5-5z"/></svg>'); /* Freccia su */
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body::-webkit-scrollbar-button:start {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M7 14l5-5 5 5z"/></svg>'); /* Freccia giù */
+    background-repeat: no-repeat;
+    background-position: center;
 }

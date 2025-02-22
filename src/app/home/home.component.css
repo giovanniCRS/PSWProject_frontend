@@ -1,13 +1,12 @@
-
 /*---------------General settings---------------*/
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.external-container{
+.external-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,334 +18,212 @@
 
 /*---------------Titolo neon categorie/prodotti---------------*/
 
-.heading{
+.heading {
     text-align: center;
     color: #ffd9e2;
-    font-size: 5em;
+    font-size: 3em;
     font-weight: 600;
     letter-spacing: 0.1em;
     text-shadow: 0 0 10px #ab2222,
                 0 0 20px #ab2222,
-                0 0 40px #ab2222,
-                0 0 80px #ab2222,
-                0 0 120px #ab2222;
+                0 0 40px #ab2222;
 }
 
 /*---------------Vista sulle categorie---------------*/
 
-.container{
+.container {
     position: relative;
     max-width: 1450px;
     width: 100%;
-    padding: 40px;
+    padding: 20px;
 }
 
-.container .box1{
-    padding: 50px 30px;
+.container .box1 {
+    padding: 30px 20px;
 }
 
-.content{
+.content {
     display: flex;
-    overflow-x: scroll;
+    overflow-x: auto;
+    padding: 20px 0;
 }
 
-.content::-webkit-scrollbar{
-    width: 12px;
+.content::-webkit-scrollbar {
+    width: 8px;
 }
 
-.content::-webkit-scrollbar-thumb{
-    background: rgba(122, 21, 21, 0.5);
-    border-radius: 6px;
+.content::-webkit-scrollbar-thumb {
+    background: rgba(146, 16, 16, 0.693);
+    border-radius: 4px;
 }
 
-.content::-webkit-scrollbar-thumb:hover{
+.content::-webkit-scrollbar-thumb:hover {
     background: #ab2222;
 }
 
-.image img{
-    width: 100px;
-    height: 100px;
+.image img {
+    width: 80px;
+    height: 80px;
     object-fit: cover;
     border-radius: 50%;
-    opacity: 1;
-    border: 3px solid #fff;
+    border: 2px solid #fff;
 }
 
-.card{
-    min-width: 350px;
-    min-height: 350px;
-    margin: 40px;
-    background: rgba(255, 255, 255, .1);
-    box-shadow: inset 20px 20px 20px rgba(0, 0, 0, .05), 5px 25px 20px rgba(0, 0, 0, .05), 5px 20px 30px rgba(0, 0, 0, .05), inset -20px -20px 25px rgba(255, 255, 255, .9);
-    border-radius: 61% 39% 52% 48% / 44% 59% 41% 56%;
-    transition: .5s ease-in-out;
+.card {
+    min-width: 300px;
+    min-height: 300px;
+    margin: 20px;
+    background: rgba(44, 43, 43, 0.303);
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
-.card:hover{
-    border-radius: 50%;
+.card:hover {
+    transform: translateY(-10px);
 }
 
-.card .card-content{
+.card .card-content {
     position: relative;
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 30px;
+    padding: 20px;
 }
 
-.card-content .name-p{
+.card-content .name-p {
     display: flex;
     align-items: center;
     flex-direction: column;
     margin-top: 10px;
     color: white;
     background-color: #7a1515;
-    padding: 0 10px ;
-    border-radius: 40px;
+    padding: 10px 20px;
+    border-radius: 20px;
 }
 
-.name-p .name{
-    font-size: 20px;
+.name-p .name {
+    font-size: 17px;
     font-weight: 600;
 }
 
-.btn{
+.btn {
     position: relative;
-    padding: 8px 35px;
+    padding: 8px 25px;
     background: #ab2222;
     border: none;
     outline: none;
-    border-radius: 40px;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, .25);
+    border-radius: 20px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 13px;
     color: #fff;
     font-weight: 500;
-    margin-top: 30px;
+    margin-top: 20px;
     text-decoration: none;
+    background-color: #ab2222;
+    transition: background-color 0.3s ease;
 }
 
-.btn:hover{
+.btn:hover {
     background: #7a1515;
 }
 
-
 /*---------------Vista sui prodotti---------------*/
-
-.menu{
+.menu {
     background: url("/assets/productList.jpg");
     background-size: cover;
 }
 
-.menu .box-container{
+.menu .box-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-    justify-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 24px;
+    padding: 20px;
+    justify-items: center;
 }
 
-.menu .box-container .box{
-    display: flex;
+.menu .box-container .box {
+    min-width: 300px;
+    min-height: 300px;
+    margin: 20px;
+    background: rgba(29, 28, 28, 0.422);
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
     position: relative;
-    justify-content: center;
-    align-items: center;
-    width: 320px;
-    height: 400px;
     color: white;
-    background: linear-gradient(45deg, #03a9f4, #ff0058);
-    margin: 20px 30px;
-    transition: 0.5s;
-    text-align: center;
 }
 
-.box-container .box:hover{
-    transform: translateY(-20px);
+.box-container .box:hover {
+    transform: translateY(-10px);
 }
 
-.box-container .box::before{
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, darkred, gold);
-}
-
-.box-container .box::after{
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, #03a9f4, #ff0058);
-    filter: blur(30px);
-}
-
-.box-container .box span{
-    position: absolute;
-    top: 6px;
-    left: 6px;
-    right: 6px;
-    bottom: 6px;
-    background: rgba(0, 0, 0, .6);
-    z-index: 2;
-}
-
-.box-container .box span::before{
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 100%;
-    background: rgba(255, 255, 255, .1);
-    pointer-events: none;
-}
-
-.box-container .box .content{
-    flex-direction: column;
+.box-container .box .content {
     position: relative;
-    z-index: 5;
-    padding: 20px 40px;
     display: flex;
     align-items: center;
+    flex-direction: column;
+    padding: 20px;
 }
 
-.box-container .box img{
-    width: 100px;
-    height: 100px;
+.box-container .box img {
+    width: 80px;
+    height: 80px;
     object-fit: cover;
     border-radius: 50%;
-    border: 3px solid white;
+    border: 2px solid #fff;
+    margin-bottom: 15px;
 }
 
-.box-container .box .content h3{
-    font-size: 2em;
+.box-container .box .content h3 {
+    font-size: 17px;
+    font-weight: 600;
     color: white;
     margin-bottom: 10px;
+    background-color: #7a1515;
+    padding: 10px 20px;
+    border-radius: 20px;
 }
 
 .box-container .box .content .price,
-.box-container .box .content .quantity{
+.box-container .box .content .quantity {
     font-size: 1.1em;
     color: white;
     margin-bottom: 10px;
-    line-height: 1.4em;
 }
 
 /*---------------Bottone All products---------------*/
-
-.ctn-all{
+.ctn-all {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    flex-direction: column;
-}
-
-.ctn-all .btn-all{
-    position: relative;
-    width: 400px;
-    height: 60px;
-    margin: 20px;
-}
-
-.ctn-all .btn-all a{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
     justify-content: center;
-    align-items: center;
-    background: rgba(3, 169, 244, .2);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, .2);
-    border-top: 1px solid rgba(255, 255, 255, .1);
-    border-bottom: 1px solid rgba(255, 255, 255, .1);
-    border-radius: 30px;
-    color: white;
+    padding: 10px;
+}
+
+.ctn-all .btn-all {
+    position: relative;
+    display: inline-block;
     text-decoration: none;
-    z-index: 1;
-    font-size: 30px;
-    letter-spacing: 5px;
-    overflow: hidden;
-    transition: 0.5s;
-    backdrop-filter: blur(15px);
 }
 
-.ctn-all .btn-all:hover a{
-    letter-spacing: 6px;
-}
-
-.ctn-all .btn-all a::before{
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(to left, rgba(255,255,255, .15), transparent);
-    transform: skewX(45deg) translateX(0);
-    transition: 0.5s;
-}
-
-.ctn-all .btn-all:hover a::before{
-    transform: skewX(45deg) translateX(200%);
-}
-
-.ctn-all .btn-all::before{
-    content: '';
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: -5px;
-    width: 30px;
-    height: 10px;
+.ctn-all .btn-all a {
+    display: inline-block;
+    padding: 8px 25px;
     background: #ab2222;
-    border-radius: 10px;
-    transition: 0.5s;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 25px;
+    color: #fff;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
 }
 
-
-.ctn-all .btn-all:hover::before{
-    bottom: 0;
-    height: 50%;
-    width: 80%;
-    border-radius: 30px;
-}
-
-.ctn-all .btn-all::after{
-    content: '';
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: -5px;
-    width: 30px;
-    height: 10px;
-    background: #ab2222;
-    border-radius: 10px;
-    transition: 0.5s;
-    transition-delay: 0s;
-}
-
-
-.ctn-all .btn-all:hover::after{
-    top: 0;
-    height: 50%;
-    width: 80%;
-    border-radius: 30px;
-}
-
-.ctn-all .btn-all::before,
-.ctn-all .btn-all::after{
-    background: #ff0058;
-    box-shadow: 0 0 5px #ab2222,
-                0 0 15px #ab2222,
-                0 0 30px #ab2222,
-                0 0 60px #ab2222;
+.ctn-all .btn-all a:hover {
+    background: #7a1515;
 }
 
 /*---------------Sezione contatti---------------*/
