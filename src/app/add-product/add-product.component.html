@@ -81,13 +81,8 @@
             <div class="list">
                 <div class="option" style="background-image: url(/assets/product.PNG);" *ngFor="let elem of productList">
                     <div class="option-info">
-                        <br>
-                        <p class="option-text">
-                            <span class="bold">
-                                Nome: <br>{{elem.nome}}
-                            </span>
-                        </p>    
-                        <br>
+
+                        <p class="option-text">Nome: {{elem.nome}}</p>
                         <p class="option-text">Marca: {{elem.marca}}</p>
                         <p class="option-text">EAN: {{elem.ean}}</p>
                         <p class="option-text">Prezzo: €{{elem.prezzo}}</p>

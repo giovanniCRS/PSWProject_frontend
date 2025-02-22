@@ -26,7 +26,7 @@ export class CarrelloService {
         const s:string = localStorage.getItem('carrello') as string
         let arr:Acquisto[] = JSON.parse(s)
         for(var i=0; i<arr.length; i++)
-          this.acquistiList[i] = new Acquisto(arr[i].idAcquisto, arr[i].prodottoVenduto, arr[i].quantita)
+          this.acquistiList[i] = new Acquisto(arr[i].idAcquisto, arr[i].prodottoVenduto, arr[i].quantita, arr[i].prezzovendita)
       }
     
     this.headers = {'Authorization':'Bearer '+localStorage.getItem('user-token')};
@@ -55,7 +55,7 @@ export class CarrelloService {
       return
 
     //se Acquisto non presente lo creiamo (aggiunta al Carrello)
-    this.acquistiList.push(new Acquisto(this.acquistiList.length, prod, 1))
+    this.acquistiList.push(new Acquisto(this.acquistiList.length, prod, 1, prod.prezzo))
 
     //lo aggiungiamo in locale
     localStorage.setItem('carrello', JSON.stringify(this.acquistiList))
@@ -95,7 +95,8 @@ export class CarrelloService {
   getTotale():number{
     let tot:number = 0
     for(var i=0; i<this.acquistiList.length; i++){
-      tot = tot + ( this.acquistiList[i].getProd().prezzo*this.acquistiList[i].getQuantita() )
+      //tot = tot + ( this.acquistiList[i].getProd().prezzo*this.acquistiList[i].getQuantita() )
+      tot = tot + ( this.acquistiList[i].prezzovendita*this.acquistiList[i].getQuantita() )   //congelato
     }
     return tot
   }
@@ -112,6 +113,9 @@ export class CarrelloService {
   //invia una richiesta al be per creare un nuovo Carrello (con i relativi acquisti)
   checkout(cart: CarrelloDto, aggiornaOrdini: () => void): void {
     this.headers = { 'Authorization': 'Bearer ' + localStorage.getItem('user-token') };
+
+    // 🛠 Log importante
+    console.log("🚀 Dati inviati al backend:", JSON.stringify(cart, null, 2));
   
     this.apiService.makeRequest("POST", API.carts, cart, this.headers).subscribe(
       (res) => {

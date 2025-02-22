@@ -57,11 +57,11 @@ export class Acquisto{
     public idAcquisto:number;
     public prodottoVenduto:Prodotto;
     public quantita:number;
-    public prezzovendita?: number;
+    public prezzovendita: number; //congelato
 
-    public constructor(idAcquisto:number, prodottoVenduto:Prodotto, quantita:number, prezzovendita?:number){
+    public constructor(idAcquisto:number, prodottoVenduto:Prodotto, quantita:number, prezzovendita:number){
         this.idAcquisto=idAcquisto;
-        this.prezzovendita=prezzovendita || 0;
+        this.prezzovendita=prezzovendita; //congelato
         this.prodottoVenduto=prodottoVenduto;
         this.quantita=quantita;
     }

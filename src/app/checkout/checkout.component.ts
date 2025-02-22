@@ -54,7 +54,8 @@ export class CheckoutComponent implements OnInit{
   //prende l'array locale di Acquisti e i valori nel Checkoutform e costruisce un Carrello da spedire 
   private buildCarrello():CarrelloDto{
     let value:CheckFormDto = this.checkForm.value
-    return new CarrelloDto(localStorage.getItem('email'), this.acquistiList, value.indirizzo, value.numeroDiTelefono, value.metodoDiPagamento)
+    let acquistiConPrezzo = this.acquistiList.map(a => new Acquisto(a.idAcquisto, a.prodottoVenduto, a.quantita, a.prezzovendita));
+    return new CarrelloDto(localStorage.getItem('email'), acquistiConPrezzo, value.indirizzo, value.numeroDiTelefono, value.metodoDiPagamento)
   }
 
   updateQuantity(pos:number,num:number):void{

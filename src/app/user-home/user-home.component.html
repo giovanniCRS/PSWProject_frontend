@@ -140,7 +140,8 @@
                         <div class="story-details">
                             <h3>{{getProd(acquisto).nome}}</h3>
                             <p>Marca: {{getProd(acquisto).marca}}</p>
-                            <p>Totale: €{{getProd(acquisto).prezzo*acquisto.quantita}}</p>
+                            <!--<p>Totale: €{{getProd(acquisto).prezzo*acquisto.quantita}}</p>-->
+                            <p>Totale: €{{acquisto.prezzovendita * acquisto.quantita}}</p>
                             <p>Quantità: {{acquisto.quantita}}</p>
                         </div>
 
