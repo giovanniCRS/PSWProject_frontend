@@ -45,7 +45,7 @@
 .content {
     display: flex;
     overflow-x: auto;
-    padding: 20px 0;
+    padding: 3px 0;
 }
 
 .content::-webkit-scrollbar {
@@ -53,7 +53,7 @@
 }
 
 .content::-webkit-scrollbar-thumb {
-    background: rgba(146, 16, 16, 0.693);
+    background: rgba(146, 16, 16, 0.484);
     border-radius: 4px;
 }
 
@@ -109,7 +109,7 @@
 
 .btn {
     position: relative;
-    padding: 8px 25px;
+    padding: 8px 20px;
     background: #ab2222;
     border: none;
     outline: none;
@@ -140,6 +140,7 @@
     gap: 24px;
     padding: 20px;
     justify-items: center;
+    margin-top: 50px;
 }
 
 .menu .box-container .box {
@@ -185,9 +186,20 @@
     border-radius: 20px;
 }
 
-.box-container .box .content .price,
-.box-container .box .content .quantity {
+.box-container .box .content .marca {
     font-size: 1.1em;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.box-container .box .content .price {
+    font-size: 1.5em;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.box-container .box .content .quantity {
+    font-size: 0.8em;
     color: white;
     margin-bottom: 10px;
 }
@@ -205,19 +217,20 @@
     position: relative;
     display: inline-block;
     text-decoration: none;
+    padding-bottom: 20px;
 }
 
 .ctn-all .btn-all a {
     display: inline-block;
     padding: 8px 25px;
-    background: #ab2222;
+    background: #0b069e;
     border: none;
     outline: none;
     border-radius: 20px;
     cursor: pointer;
     font-size: 25px;
     color: #fff;
-    font-weight: 500;
+    font-weight: 550;
     text-decoration: none;
     transition: background-color 0.3s ease;
 }

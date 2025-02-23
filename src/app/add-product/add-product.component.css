@@ -1,353 +1,343 @@
-
 /*---------------General settings---------------*/
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
+body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 1323px;
+    min-height: 100vh;
     background: url('/assets/addCatProd.jpg') no-repeat;
     background-size: cover;
     background-position: center;
+    padding: 20px;
 }
 
-/*---Filtro colore---*/
+/*---------------Contenitore principale---------------*/
 
-.blacker{
+.double-wrap {
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+    max-width: 1400px;
     width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0);
-}
-
-.blacker.active{
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-/*---------------Contenitore, form & lista ---------------*/
-
-.double-wrap{
-    display: grid;
-    justify-items: center;
-}
-
-.double-wrap .wrapper{
-    margin: 100px;
+    padding: 20px;
 }
 
 /*---------------Form---------------*/
 
-.wrapper{
-    width: 420px;
-    background: transparent;
-    border: 2px solid rgba(255, 255, 255, .2);
-    backdrop-filter: blur(20px);
-    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-    color: white;
+.wrapper {
+    height: 635px;
+    width: 450px;
+    background: rgba(24, 24, 24, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
     border-radius: 10px;
-    padding: 30px 40px;
+    padding: 20px;
+    color: white;
 }
 
-.wrapper h1{
-    font-size: 36px;
+.wrapper h1 {
+    font-size: 25px;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 /*-----Campi form-----*/
 
-.wrapper .input-box{
+.wrapper .input-box {
     position: relative;
     width: 100%;
-    height: 50px;
-    margin: 30px 0 10px;
+    margin: 15px 0;
 }
 
-.input-box input{
+.input-box input {
     width: 100%;
-    height: 100%;
+    height: 40px;
     background: transparent;
-    border: none;
-    outline: none;
-    border: 2px solid rgba(255, 255, 255, .2);
-    border-radius: 40px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
     font-size: 16px;
     color: white;
-    padding: 20px 45px 20px 20px;
+    padding: 0 15px;
+    outline: none;
 }
 
-.input-box input::placeholder{
-    color: white;
+.input-box input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
 }
+
+/* Stile per i menu a tendina */
+.input-box select,
+.input-field select {
+    width: 100%;
+    height: 45px;
+    background: rgba(0, 0, 0, 0.5); /* Sfondo semi-trasparente */
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 0 15px;
+    outline: none;
+    appearance: none; /* Rimuove lo stile predefinito */
+    cursor: pointer;
+}
+
+/* Icona freccia personalizzata */
+.input-box select,
+.input-field select {
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 20px;
+}
+
+/* Stile delle opzioni */
+.input-box select option,
+.input-field select option {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 10px;
+}
+
+/* Stile per l'opzione placeholder */
+.input-box select option[disabled] {
+    color: rgba(255, 255, 255, 0.5); /* Colore più chiaro per il placeholder */
+}
+
+/* Effetto hover e focus */
+.input-box select:hover,
+.input-box select:focus,
+.input-field select:hover,
+.input-field select:focus {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
 
 /*-----Tasto invio form-----*/
 
-.wrapper .btn{
-    margin-top: 25px;
+.wrapper .btn {
     width: 100%;
-    height: 45px;
-    background: rgb(0, 0, 0, 0.8);
+    height: 32px;
+    background: rgba(25, 24, 24, 0.8);
     border: none;
-    outline: none;
-    border-radius: 40px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-    cursor: pointer;
-    font-size: 16px;
+    border-radius: 20px;
     color: #a82c2c;
+    font-size: 20px;
     font-weight: 600;
-    backdrop-filter: blur(20px);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.wrapper .btn:hover{
+.wrapper .btn:hover {
     background-color: #a82c2c;
     color: white;
 }
+
 
 /*---------------Lista Prodotti---------------*/
 
-.list{
-    max-width: 930px;
-    margin: 50px;
+.list {
+    margin-top: 150px;
+    flex: 1;
     display: flex;
     overflow-x: auto;
-}
-
-.list .item{
-    min-width: 110px;
-    height: 110px;
-    line-height: 110px;
-    text-align: center;
-    background-color: white;
-    margin-right: 2px;
+    gap: 20px;
+    padding: 15px 0px;
 }
 
 .list .option {
-    min-width: 270px;
-    height: 600px;
-    margin-right: 10px;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-.list::-webkit-scrollbar{
-    width: 12px;
-}
-
-.list::-webkit-scrollbar-thumb{
-    background: rgba(122, 21, 21, 0.5);
-    border-radius: 6px;
-}
-
-.list::-webkit-scrollbar-thumb:hover{
-    background: #ab2222;
-}
-
-#options{
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
-    grid-gap: 20px;
-}
-
-.option {
-    width: 270px;
+    min-width: 250px;
     height: 330px;
-    background-color: red;
+    background: rgba(34, 32, 32, 0.1);
+    border: 2px solid rgb(60, 57, 57);
     border-radius: 10px;
-    border: 1px solid white;
-    margin: 0 auto;
-    background-size: cover;
-    background-position: center;
-    overflow: hidden;
-    position: relative;
-}
-
-.option-info{
-    width: 100%;
-    height: 100%;
+    padding: 15px;
+    color: white;
     display: flex;
-    align-items: center;
-    justify-content: flex-end;
     flex-direction: column;
-    opacity: 1;
-    transition: opacity 0.2s ease-in-out;
+    justify-content: space-between;
 }
 
-.option-info:hover{
-    opacity: 1;
-
-}
-
-.option-info:hover .option-text, .option-info:hover .option-button{
-    transform: translateY(0);
-}
-
-.option-text{
-    color: white;
-    font-size: 20px;
-    margin: 0;
-    width: 100%;
-    height: 100%;
+.option-info {
     text-align: center;
-    transition: all 0.2s ease-in-out;
-    transform: translateY(-20px);
 }
 
-.bold {
-    font-weight: bold;
+.option-text {
+    font-size: 19px;
+    margin: 10px 0;
+    font-weight: 500;
 }
 
-.option-button{
-    width: fit-content;
-    line-height: 50px;
-    padding: 0px 30px;
-    margin: 20% auto;
-    border: solid white 2px;
-    color: white;
-    font-size: 15px;
-    transition: all 0.2s;
-    transform: translateY(-20px);
+.option-button {
+    margin-left: 50px;
+    margin-top: 13px;
+    width: 60%;
+    height: 30px;
+    background: rgba(25, 24, 24, 0.8);
+    border: none;
+    border-radius: 20px;
+    color: #a82c2c;
+    font-size: 16px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 550;
+    text-align: center;
+    line-height: 30px;
 }
 
-.option-button:hover{
+.option-button:hover {
     background-color: #a82c2c;
-    border: solid 2px #a82c2c;
-    color: black;
-}
-
-.option-info a{
-    text-decoration: none;
-}
-
-.main-carousel{
-    border: 1px solid red;
-    padding: 40px 0;
-}
-
-.carousel-cell{
-    height: 350px;
-    width: 350px;
-    border: 1px solid red;
+    border-color: #a82c2c;
+    color: white;
 }
 
 /*---------------Pop-up aggiornamento Prodotto---------------*/
 
-.popup .content{
-    position: absolute;
-    top: 80%;
+.popup .content {
+    position: fixed;
+    top: 54%;
     left: 50%;
-    transform: translate(-50%, -150%) scale(0);
-    width: 50%;
-    height: 110%;
-    z-index: 2;
-    text-align: center;
-    border-radius: 20px;
+    transform: translate(-50%, -50%) scale(0);
+    width: 90%;
+    max-width: 450px; 
     background: #7a3737;
-    box-shadow: 38px 38px 56px #2f0c0c, -15px -15px 28px #2f0c0c;
-    z-index: 1;
+    border-radius: 15px; 
+    padding: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); 
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    color: white;
+    opacity: 0; 
 }
 
-.popup label{
-    padding-left: 0%;
+.popup.active .content {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1; 
 }
 
-.popup .errors{
+.popup .close-btn {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    width: 30px;
+    height: 30px;
+    background: #ab2626;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    color: white;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.popup .close-btn:hover {
+    background-color: #c0392b; 
+    transform: scale(1.1); 
+}
+
+.popup h1 {
+    font-size: 22px; 
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 600; 
+    color: white;
+}
+
+.popup .input-field {
     margin-bottom: 10px;
 }
 
-.popup .close-btn{
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    width: 30px;
-    height: 30px;
-    color: black;
-    font-size: 30px;
-    border-radius: 50%;
-    background: #ab2626;
-    box-shadow: 5px 5px 15px #2f0c0c, -5px -5px 15px #2f0c0c;
-}
-
-.popup.active .content{
-    transition: all 300ms ease-in-out;
-    transform: translate(-50%, -50%)scale(1);
-}
-
-.popup h1{
-    text-align: center;
-    font-size: 32px;
-    font-weight: 600;
-    padding: 20px;
-    padding-top: 20px;
-    padding-bottom: 7%;
-}
-
-.popup a{
-    font-weight: 600;
+.popup .input-field input {
+    width: 100%;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 0 15px;
+    font-size: 14px;
     color: white;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.popup .input-field input:focus {
+    border-color: rgba(255, 255, 255, 0.5); 
+}
+
+.popup .second-button {
+    width: 250px;
+    height: 40px;
+    background: #ab2626;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    line-height: 0px;
+}
+
+.popup .second-button:hover {
+    background-color: #c0392b; 
 }
 
 /*-----Campi form aggiornamento-----*/
 
-.input-field .validate{
-    padding: 20px;
-    font-size: 16px;
-    border-radius: 10px;
-    border: none;
-    margin-bottom: 15px;
-    color: black;
-    background: #ae6969;
-    box-shadow: inset 5px 5px 5px black, inset -5px -5px 5px #282828;
+.input-field .validate {
+    width: 100%;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 0 15px;
+    font-size: 14px;
+    color: white;
     outline: none;
 }
 
-.input-field .validate::placeholder{
-    color: black;
+.input-field .validate::placeholder {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 /*-----Tasti form aggiornamento-----*/
 
-.second-button{
-    color:white;
-    font-size: 18px;
-    font-weight: 500;
-    margin-top: 20px;
-    padding: 20px 30px;
-    border-radius: 40px;
-    background: black;
-    box-shadow: 8px 8px 15px #202020, -8px -8px 15px #2c2c2c;
-    transition: box-shadow 0.35s ease;
-    outline: none;
-}
-
-.second-button:hover{
-    background: #ab2626;
-}
-
-select{
+.second-button {
     width: 100%;
     height: 40px;
-    background: transparent;
-    backdrop-filter: blur(20px);
-    border: 2px solid rgba(255, 255, 255, .2);
+    background: rgba(0, 0, 0, 0.8);
+    border: none;
+    border-radius: 20px;
     color: white;
-    outline: none;
-    font-size: 17px;
-    padding: 0 10px;
-    border-radius: 40px;
+    font-size: 14px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-select option{
-    color: white;
-    background-color: #7c3e3e;
+.second-button:hover {
+    background-color: #a82c2c;
 }
 
-label{
-    padding-left: 23%;
+/*---------------Scrollbar---------------*/
+
+.list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.list::-webkit-scrollbar-thumb {
+    background: rgba(122, 21, 21, 0.5);
+    border-radius: 4px;
+}
+
+.list::-webkit-scrollbar-thumb:hover {
+    background: #ab2222;
 }

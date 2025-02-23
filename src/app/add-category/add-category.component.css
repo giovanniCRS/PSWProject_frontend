@@ -10,7 +10,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 1323px;
+    min-height: 1123px;
     background: url('/assets/addCatProd.jpg') no-repeat;
     background-size: cover;
     background-position: center;
@@ -45,7 +45,7 @@ body{
     width: 420px;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, .2);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(18px);
     box-shadow: 0 0 10px rgba(0, 0, 0, .2);
     color: white;
     border-radius: 10px;
@@ -109,11 +109,12 @@ body{
 /*---------------Lista Categorie---------------*/
 
 .list{
-    max-width: 930px;
+    max-width: 1300px;
     margin: 50px auto;
     display: flex;
     overflow-x: auto;
-    gap: 10px;
+    gap: 15px;
+    padding-bottom: 20px;
 }
 
 .list .item{
@@ -139,7 +140,7 @@ body{
 }
 
 .list::-webkit-scrollbar-thumb{
-    background: rgba(122, 21, 21, 0.5);
+    background: rgba(171, 11, 11, 0.5);
     border-radius: 6px;
 }
 
@@ -228,8 +229,8 @@ body{
     top: 65%;
     left: 50%;
     transform: translate(-50%, -150%) scale(0);
-    width: 50%;
-    height: 60%;
+    width: 30%;
+    height: 40%;
     z-index: 2;
     text-align: center;
     border-radius: 20px;
@@ -253,7 +254,7 @@ body{
 
 .popup.active .content{
     transition: all 300ms ease-in-out;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -60%) scale(1);
 }
 
 .popup h1{

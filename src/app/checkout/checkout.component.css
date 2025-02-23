@@ -4,6 +4,8 @@
 body{
     min-height: 1280px;
     background: url('/assets/checkout-bg1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .errors-cart-container{

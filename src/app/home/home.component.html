@@ -19,7 +19,7 @@
                             <span class="name">{{elem.nome}}</span>
                         </div>
 
-                        <button routerLink="search-prod" (click)="setKeyword(elem.nome)" class="btn">VISUALIZZA PRODOTTI</button>
+                        <button routerLink="search-prod" (click)="setKeyword(elem.nome)" class="btn">TROVA I PRODOTTI</button>
                     </div>
                 </div>
             </div>
@@ -41,19 +41,20 @@
             <div class="content">
                 <img src="/assets/product.PNG" alt="">
                 <h3>{{elem.nome}}</h3>
-                <div class="price">{{elem.marca}}</div>
-                <div class="price">€{{elem.prezzo}}</div>
-                <div class="quantity">{{elem.quantitaInMagazzino}} Rimanenti</div>
+                <div class="marca">{{elem.marca}}</div>
+                <div class="price">€ {{elem.prezzo}}</div>
+                <br>
+                <div class="quantity">{{elem.quantitaInMagazzino}} RIMASTI</div>
                 <div class="errors" *ngIf="elem.quantitaInMagazzino==0">
                     <div>Esaurito</div>
                 </div>
-                <a (click)="addProduct(elem)" class="btn">Aggiungi al carrello</a>
+                <a (click)="addProduct(elem)" class="btn">Aggiungi al carrello​</a>
             </div>
         </div>
     </div>
     <div class="ctn-all">
         <div class="btn-all">
-            <a routerLink="search-prod" (click)="setKeyword('all')">Vedi tutti</a>
+            <a routerLink="search-prod" (click)="setKeyword('all')">VEDI TUTTI</a>
         </div>
     </div>
 </section>
