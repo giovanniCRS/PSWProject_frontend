@@ -25,9 +25,16 @@ export class RegisterComponent implements OnInit{
     this.userService.reloadUser()
   }
 
-  signUp():void{
-    this.userService.signUp(this.registerForm.value)
-  }
+  signUp(): void {
+    this.userService.signUp(this.registerForm.value).subscribe({
+      next: (res) => {
+        localStorage.setItem('email', res.utente.email);
+        localStorage.setItem('user', JSON.stringify(res.utente));
+        window.location.href = '/user-home'; // Redirect manuale per aggiornare la sessione
+      },
+      error: (err) => console.error("Errore nella registrazione:", err)
+    });
+  }  
 
   //serva a far apparire nel Html il messaggio di errore
   getErrorMessage():String{

@@ -34,67 +34,48 @@ export class UserService {
   headers = {'Authorization':'Bearer '+localStorage.getItem('user-token')};
 
   //invia una richiesta di Registrazione al be
-  signUp(data:object):void {
-    //pulizia dati precedenti in localstorage
+  signUp(data:object): Observable<AuthResponseDto> {
     localStorage.clear();
     
-    //richiesta
-    let response = this.apiService.makeRequest("POST", API.auth + API.register, data);
-    response.subscribe((res) => {
-
-      //riceviamo dal be un AuthResponseDto
-      let auth: AuthResponseDto = res as AuthResponseDto;
-
-      //salviamo un oggetto Utente nel localStorage
-      localStorage.setItem('user', JSON.stringify(auth.utente));
-
-      //salviamo il Token per autorizzare le richieste
-      localStorage.setItem('user-token', auth.jwt as string);
-
-      localStorage.setItem('email', auth.utente.email);
-
-      this.isUserLoggedIn.next(true);
-      this.router.navigate(['user-home']);
-    },
-    error => {
-      this.errorMessage = error.error;
-    });
+    return this.apiService.makeRequest("POST", API.auth + API.register, data).pipe(
+      tap((res: AuthResponseDto) => {
+        localStorage.setItem('user', JSON.stringify(res.utente));
+        localStorage.setItem('user-token', res.jwt as string);
+        localStorage.setItem('email', res.utente.email);
+        this.isUserLoggedIn.next(true);
+        this.router.navigate(['user-home']);
+      }),
+      catchError((error) => {
+        this.errorMessage = error.error;
+        return throwError(() => error);
+      })
+    );
   }
+  
 
   //invia una richiesta di Login al be
-  login(data:object):void {
-    //richiesta
-    let response = this.apiService.makeRequest("POST", API.auth + API.login, data);
-    response.subscribe((res) => {
-
-      //riceviamo dal be un AuthResponseDto
-      let auth: AuthResponseDto = res as AuthResponseDto;
-
-      //check che chi si logga da questo punto sia un Utente
-      auth.utente.authorities.forEach((elem) => {
-        if(elem.authority.includes("USER")) {
-
-          //caso positivo -> salviamo un oggetto Utente nel localStorage
-          localStorage.setItem('user', JSON.stringify(auth.utente));
-
-          //salviamo il Token per autorizzare le richieste
-          localStorage.setItem('user-token', auth.jwt as string);
-
-          localStorage.setItem('email', auth.utente.email);
-
-          this.isUserLoggedIn.next(true);
-          this.router.navigate(['user-home']);
-        } else {
-          //caso negativo -> stampa a schermo
-          this.errorMessage = "Accedi alla tua pagina admin!";
-        }
-      });
-      return;
-    },
-    error => {
-      this.errorMessage = error.error;
-    });
+  login(data:object): Observable<AuthResponseDto> {
+    return this.apiService.makeRequest("POST", API.auth + API.login, data).pipe(
+      tap((res: AuthResponseDto) => {
+        res.utente.authorities.forEach((elem) => {
+          if(elem.authority.includes("USER")) {
+            localStorage.setItem('user', JSON.stringify(res.utente));
+            localStorage.setItem('user-token', res.jwt as string);
+            localStorage.setItem('email', res.utente.email);
+            this.isUserLoggedIn.next(true);
+            this.router.navigate(['user-home']);
+          } else {
+            this.errorMessage = "Accedi alla tua pagina admin!";
+          }
+        });
+      }),
+      catchError((error) => {
+        this.errorMessage = error.error;
+        return throwError(() => error);
+      })
+    );
   }
+  
 
   //operazioni nel ricarimento della pagina
   reloadUser():void {

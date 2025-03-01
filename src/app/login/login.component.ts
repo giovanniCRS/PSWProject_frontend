@@ -24,8 +24,15 @@ export class LoginComponent implements OnInit{
     this.userService.reloadUser()
   }
 
-  login():void{
-    this.userService.login(this.loginForm.value)
+  login(): void {
+    this.userService.login(this.loginForm.value).subscribe({
+      next: (res) => {
+        localStorage.setItem('email', res.utente.email);
+        localStorage.setItem('user', JSON.stringify(res.utente));
+        window.location.href = '/user-home'; // Usa un redirect manuale per garantire il caricamento
+      },
+      error: (err) => console.error("Errore nel login", err)
+    });
   }
 
   //serve a far apparire il messaggio di errore nel Html

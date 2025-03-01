@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { Prodotto } from '../dataTypes';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { API } from '../constants';
 
 @Injectable({
@@ -26,23 +26,29 @@ export class ProductService {
   }
 
   //invia una richiesta per aggiungere un Prodotto al be
-  addProduct(product:Prodotto):Observable<Prodotto>{
-    if(localStorage.getItem('admin-token')!=null)
-      return this.apiService.makeRequest("POST", API.products+API.add, product, this.headers)
-    return new Observable<Prodotto>
+  addProduct(product:Prodotto):Observable<any> {
+    if(localStorage.getItem('admin-token')!=null) {
+      const currentHeaders = {'Authorization':'Bearer '+localStorage.getItem('admin-token')};
+      return this.apiService.makeRequest("POST", API.products+API.add, product, currentHeaders);
+    }
+    return throwError(() => new Error("Admin token non presente. Operazione non consentita."));
   }
 
   //invia una richiesta per aggiornare un Prodotto al be
-  updateProduct(product:Prodotto, lastUpdate:undefined|String):Observable<Prodotto>{
-    if(localStorage.getItem('admin-token')!=null)
-      return this.apiService.makeRequest("PUT", API.products+"/"+lastUpdate, product, this.headers)
-    return new Observable<Prodotto>
+  updateProduct(product:Prodotto, lastUpdate:undefined|String):Observable<any> {
+    if(localStorage.getItem('admin-token')!=null) {
+      const currentHeaders = {'Authorization':'Bearer '+localStorage.getItem('admin-token')};
+      return this.apiService.makeRequest("PUT", API.products+"/"+lastUpdate, product, currentHeaders);
+    }
+    return throwError(() => new Error("Admin token non presente. Operazione non consentita."));
   }
 
   //invia una richiesta per rimuovere un Prodotto al be
-  removeProduct(ean:String):Observable<Prodotto>{
-    if(localStorage.getItem('admin-token')!=null)
-      return this.apiService.makeRequest("DELETE", API.products+"/"+ean, null, this.headers)
-    return new Observable<Prodotto>
+  removeProduct(ean:String):Observable<any> {
+    if(localStorage.getItem('admin-token')!=null) {
+      const currentHeaders = {'Authorization':'Bearer '+localStorage.getItem('admin-token')};
+      return this.apiService.makeRequest("DELETE", API.products+"/"+ean, null, currentHeaders);
+    }
+    return throwError(() => new Error("Admin token non presente. Operazione non consentita."));
   }
 }

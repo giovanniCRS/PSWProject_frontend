@@ -40,16 +40,21 @@ export class AddProductComponent implements OnInit{
 
   //operazioni che avvengono a caricamento pagina
   ngOnInit(): void {
-
-    //facciamo richiesta per tutte le Categorie
-    this.categoryService.getAllCategories().subscribe((result)=>{
-      if(result){this.categoryList=result}
-    })
-
-    //facciamo richiesta per tutti i Prodotti
-    this.productService.getAllProducts().subscribe((result)=>{
-      if(result){this.productList=result}
-    })
+    // Richiesta per tutte le Categorie
+    this.categoryService.getAllCategories().subscribe({
+      next: (result) => { 
+        if (result) { this.categoryList = result }
+      },
+      error: (err) => console.error("Errore nel caricamento delle categorie", err)
+    });
+  
+    // Richiesta per tutti i Prodotti
+    this.productService.getAllProducts().subscribe({
+      next: (result) => {
+        if (result) { this.productList = result }
+      },
+      error: (err) => console.error("Errore nel caricamento dei prodotti", err)
+    });
   }
 
   //serve a far comparire / scomparire form aggiornamento Prodotto nel Html
@@ -62,12 +67,16 @@ export class AddProductComponent implements OnInit{
   }
 
   //chiede al service di far richiesta per aggiunta di un Prodotto
-  addProduct():void{
-    const product:Prodotto=this.productForm.value;
-    this.productService.addProduct(product).subscribe((res)=>{
-      console.log("Prodotto aggiunto con successo!!!")
-      window.location.reload()
-    })
+  addProduct(): void {
+    const product: Prodotto = this.productForm.value;
+    this.productService.addProduct(product).subscribe({
+      next: (res) => {
+        console.log("Prodotto aggiunto con successo!!!");
+        this.productList?.push(res); // Aggiorna la lista senza ricaricare
+        this.productForm.reset(); // Reset del form
+      },
+      error: (err) => console.error("Errore nell'aggiunta del prodotto", err)
+    });
   }
 
   //chiede al service di far richiesta per aggiornamento di un Prodotto

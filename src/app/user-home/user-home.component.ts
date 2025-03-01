@@ -27,17 +27,24 @@ export class UserHomeComponent implements OnInit{
   }
 
   //operazioni che avvengono a caricamento pagina
-  ngOnInit(): void{
-
-    //prendiamo oggetto Utente per mezzo della mail
-    this.userService.getByEmail(localStorage.getItem('email')).subscribe((u)=>{
-      this.user=u
-    })
-
-    //facciamo richiesta per ricevere tutti i suoi ordini
-    this.userService.getOrdini(localStorage.getItem('email')).subscribe((res)=>{
-      this.storicoOrdini=res
-    })
+  ngOnInit(): void {
+    const email = localStorage.getItem('email');
+    
+    if (!email) {
+      console.error("Email non trovata nel localStorage!");
+      return;
+    }
+  
+    // Prendiamo i dati utente
+    this.userService.getByEmail(email).subscribe((u) => {
+      this.user = u;
+    });
+  
+    // Recuperiamo gli ordini
+    this.userService.getOrdini(email).subscribe({
+      next: (res) => this.storicoOrdini = res,
+      error: (err) => console.error("Errore nel caricamento degli ordini", err)
+    });
   }
 
   //serve a far comparire / scomparire Pop-up aggiornamento nel Html
